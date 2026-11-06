@@ -3,17 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>JavaScript Fundamentals</title>
+
     <link rel="stylesheet" href="style.css" />
-    <!-- Module scripts are deferred automatically. -->
+
+    <!--
+    JavaScript loading methods:
+
+    1. Normal classic script:
+       <script src="script.js"></script>
+       Executes when the browser reaches the script.
+       It can block HTML parsing.
+
+    2. Deferred classic script:
+       <script src="script.js" defer></script>
+       Downloads while HTML is parsed.
+       Executes after HTML parsing is complete.
+
+    3. JavaScript module:
+       <script type="module" src="script.js"></script>
+       Modules are deferred automatically.
+       They use module scope and strict mode by default.
+
+    Keep only ONE script version active.
+  -->
+
     <script type="module" src="script.js"></script>
-    <!-- Classic-script alternative: <script src="script.js" defer></script> -->
   </head>
+
   <body>
     <main class="page">
       <section class="content">
         <p class="eyebrow">Programming Practice</p>
+
         <h1>JavaScript Fundamentals</h1>
+
         <p class="message">
           JavaScript is running successfully. Open your browser Console to view
           the practice examples.
