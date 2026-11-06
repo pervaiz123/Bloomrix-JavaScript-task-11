@@ -148,11 +148,12 @@ function initializeProfile() {
         setupContactForm();
 
     } catch (error) {
-        showError(
-            "Unable to load your profile. Please refresh the page and try again."
-        );
+        const errorDetails =
+            error instanceof Error ? error.message : "Unknown error";
 
-        // The error is handled and displayed in the page.
+        showError(
+            `Unable to load your profile. ${errorDetails}. Please refresh the page and try again.`
+        );
     }
 }
 
@@ -205,9 +206,7 @@ function renderSkills(skills) {
         const listItem = document.createElement("li");
 
         listItem.className = "skill-item";
-
-        listItem.textContent =
-            `${skill.name} — ${skill.level}/10`;
+        listItem.textContent = `${skill.name} — ${skill.level}/10`;
 
         return listItem;
     });
@@ -223,10 +222,10 @@ function renderSkills(skills) {
    5. SKILL SEARCH AND FILTER
 ========================================= */
 
-function filterSkills(searchText) {
+function filterSkills(skills, searchText) {
     const normalizedSearch = searchText.trim().toLowerCase();
 
-    return profileData.skills.filter((skill) =>
+    return skills.filter((skill) =>
         skill.name.toLowerCase().includes(normalizedSearch)
     );
 }
@@ -246,7 +245,10 @@ function setupSkillSearch() {
 function handleSkillSearch(event) {
     const searchText = event.target.value;
 
-    const filteredSkills = filterSkills(searchText);
+    const filteredSkills = filterSkills(
+        profileData.skills,
+        searchText
+    );
 
     renderSkills(filteredSkills);
 
@@ -378,6 +380,19 @@ function calculateExperienceScore(experienceList) {
 }
 
 
+function getProfileMessage(experienceYears) {
+    if (experienceYears >= 3) {
+        return "Experienced developer with practical project experience.";
+    }
+
+    if (experienceYears > 0) {
+        return "Developing professional experience through practical work.";
+    }
+
+    return "Currently building professional experience.";
+}
+
+
 function displayExperienceScore() {
     const scoreElement = document.querySelector("#experience-score");
 
@@ -389,8 +404,10 @@ function displayExperienceScore() {
         profileData.experience
     );
 
+    const profileMessage = getProfileMessage(totalYears);
+
     scoreElement.textContent =
-        `Total Recorded Experience: ${totalYears.toFixed(2)} years`;
+        `Total Recorded Experience: ${totalYears.toFixed(2)} years. ${profileMessage}`;
 }
 
 
@@ -453,29 +470,11 @@ function renderAchievements(achievements) {
 
 
 /* =========================================
-   12. CONDITIONAL PROFILE MESSAGE
-========================================= */
-
-function getProfileMessage(experienceYears) {
-    if (experienceYears >= 3) {
-        return "Experienced developer with practical project experience.";
-    }
-
-    if (experienceYears > 0) {
-        return "Developing professional experience through practical work.";
-    }
-
-    return "Currently building professional experience.";
-}
-
-
-/* =========================================
-   13. CONTACT FORM
+   12. CONTACT FORM
 ========================================= */
 
 function setupContactForm() {
     const contactForm = document.querySelector("#contact-form");
-
     const formMessage = document.querySelector("#form-message");
 
     if (!contactForm || !formMessage) {
@@ -486,6 +485,7 @@ function setupContactForm() {
 
     contactForm.addEventListener("reset", () => {
         formMessage.textContent = "";
+        delete formMessage.dataset.status;
     });
 }
 
@@ -544,7 +544,7 @@ function handleContactSubmit(event) {
 
 
 /* =========================================
-   14. START APPLICATION
+   13. START APPLICATION
 ========================================= */
 
 initializeProfile();
