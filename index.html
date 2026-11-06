@@ -4,46 +4,249 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>JavaScript Fundamentals</title>
+    <meta
+      name="description"
+      content="Personal profile and contact page of Pervaiz Ahmed."
+    />
+
+    <title>Personal Profile & Contact Page</title>
 
     <link rel="stylesheet" href="style.css" />
 
-    <!--
-    JavaScript loading methods:
-
-    1. Normal classic script:
-       <script src="script.js"></script>
-       Executes when the browser reaches the script.
-       It can block HTML parsing.
-
-    2. Deferred classic script:
-       <script src="script.js" defer></script>
-       Downloads while HTML is parsed.
-       Executes after HTML parsing is complete.
-
-    3. JavaScript module:
-       <script type="module" src="script.js"></script>
-       Modules are deferred automatically.
-       They use module scope and strict mode by default.
-
-    Keep only ONE script version active.
-  -->
-
-    <script type="module" src="script.js"></script>
+    <script type="module" src="app.js"></script>
   </head>
 
   <body>
-    <main class="page">
-      <section class="content">
-        <p class="eyebrow">Programming Practice</p>
+    <header class="profile-header">
+      <div class="header-container">
+        <div class="profile-intro">
+          <h1 id="profile-name">Pervaiz Ahmed</h1>
 
-        <h1>JavaScript Fundamentals</h1>
+          <p id="profile-introduction">
+            Hi, I am Pervaiz Ahmed. I am a Software Engineer with experience in
+            creating responsive and user-friendly websites.
+          </p>
+        </div>
 
-        <p class="message">
-          JavaScript is running successfully. Open your browser Console to view
-          the practice examples.
+        <img
+          src="images/pervaiz_photo.jpeg"
+          alt="Profile photograph of Pervaiz Ahmed"
+          class="profile-img"
+        />
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- About Section -->
+      <section class="card about-section">
+        <h2>About Me</h2>
+
+        <p id="about-description">
+          I am a passionate Software Engineer with a strong foundation in Web
+          Development. I enjoy creating innovative solutions and continuously
+          improving my skills.
+        </p>
+
+        <p class="quote">
+          <em>"Learning never exhausts the mind." - Leonardo da Vinci</em>
+        </p>
+
+        <p class="status" id="profile-status" aria-live="polite">
+          <small>Status: Available for new opportunities</small>
         </p>
       </section>
+
+      <!-- Skills Section -->
+      <section class="card skills-section">
+        <h2>Technical Skills</h2>
+
+        <label for="skill-search">Search Skills:</label>
+
+        <input
+          type="search"
+          id="skill-search"
+          placeholder="Search a skill..."
+          autocomplete="off"
+        />
+
+        <ul class="skills-list" id="skills-list">
+          <!-- Skills will be rendered using JavaScript. -->
+        </ul>
+
+        <p id="skills-message" aria-live="polite"></p>
+
+        <p id="skill-score"></p>
+      </section>
+
+      <!-- Education Section -->
+      <section class="card education-section">
+        <h2>Education & Credentials</h2>
+
+        <ul class="credentials-list" id="education-list">
+          <!-- Education details will be rendered using JavaScript. -->
+        </ul>
+      </section>
+
+      <!-- Experience Section -->
+      <section class="card experience-section">
+        <h2>Professional Experience</h2>
+
+        <div id="experience-details">
+          <!-- Experience details will be rendered using JavaScript. -->
+        </div>
+
+        <p id="experience-score"></p>
+      </section>
+
+      <!-- Projects Section -->
+      <section class="card projects-section">
+        <h2>Projects</h2>
+
+        <div id="projects-list">
+          <!-- Projects will be rendered using JavaScript. -->
+        </div>
+      </section>
+
+      <!-- Achievements Section -->
+      <section class="card achievements-section">
+        <h2>Achievements</h2>
+
+        <ul id="achievements-list">
+          <!-- Achievements will be rendered using JavaScript. -->
+        </ul>
+      </section>
+
+      <!-- Contact and Social Links -->
+      <section class="card connect-section">
+        <h2>Connect & Resources</h2>
+
+        <p>Visit my external profiles:</p>
+
+        <div class="social-links">
+          <a
+            href="https://www.linkedin.com/in/pervaiz-ahmed-36611420a"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href="https://github.com/pervaiz123"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+          >
+            GitHub
+          </a>
+        </div>
+      </section>
+
+      <!-- Contact Form -->
+      <section class="card contact-section">
+        <h2>Contact Form</h2>
+
+        <form id="contact-form">
+          <p>
+            <label for="full-name">Full Name:</label>
+
+            <input
+              type="text"
+              id="full-name"
+              name="fullName"
+              placeholder="Enter your full name"
+              autocomplete="name"
+              required
+            />
+          </p>
+
+          <p>
+            <label for="user-email">Email:</label>
+
+            <input
+              type="email"
+              id="user-email"
+              name="email"
+              placeholder="yourname@email.com"
+              autocomplete="email"
+              required
+            />
+          </p>
+
+          <p>
+            <label for="experience">Experience Level:</label>
+
+            <select id="experience" name="experience" required>
+              <option value="" disabled selected>
+                -- Select Experience --
+              </option>
+
+              <option value="fresher">Fresher / Student</option>
+              <option value="1-2">1 - 2 Years</option>
+              <option value="3+">3+ Years</option>
+            </select>
+          </p>
+
+          <fieldset class="checkbox-fieldset">
+            <legend>Interests</legend>
+
+            <input
+              type="checkbox"
+              id="interest-coding"
+              name="interests"
+              value="coding"
+            />
+            <label for="interest-coding">Coding</label>
+
+            <br />
+
+            <input
+              type="checkbox"
+              id="interest-designing"
+              name="interests"
+              value="designing"
+            />
+            <label for="interest-designing">Designing</label>
+
+            <br />
+
+            <input
+              type="checkbox"
+              id="interest-gaming"
+              name="interests"
+              value="gaming"
+            />
+            <label for="interest-gaming">Gaming</label>
+          </fieldset>
+
+          <p>
+            <label for="message">Message:</label>
+
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              placeholder="Write your message here..."
+              required
+            ></textarea>
+          </p>
+
+          <div class="form-buttons">
+            <button type="submit" class="btn submit-btn">Submit Form</button>
+
+            <button type="reset" class="btn reset-btn">Reset Form</button>
+          </div>
+
+          <p id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
     </main>
+
+    <footer>
+      <p>
+        <small>&copy; 2026 Pervaiz Ahmed. All Rights Reserved.</small>
+      </p>
+    </footer>
   </body>
 </html>

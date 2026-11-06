@@ -1,21 +1,40 @@
-/* Page presentation */
+/* ========================================
+   1. CSS CUSTOM PROPERTIES
+======================================== */
 
 :root {
   font-family: Arial, Helvetica, sans-serif;
   color: #172033;
   background: #f4f6fa;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  --primary-color: #2457d6;
+  --primary-hover: #1945b3;
+  --text-color: #172033;
+  --muted-color: #5b667a;
+  --border-color: #e0e5ee;
+  --surface-color: #ffffff;
+  --page-background: #f4f6fa;
+
+  --small-radius: 8px;
+  --card-radius: 16px;
+
+  --card-shadow: 0 16px 40px rgb(23 32 51 / 8%);
+
+  --page-width: 900px;
+  --section-spacing: 24px;
 }
 
-/* Universal selector */
+/* ========================================
+   2. UNIVERSAL RESET
+======================================== */
 
 * {
   box-sizing: border-box;
 }
 
-/* Main page */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   min-width: 320px;
@@ -24,62 +43,478 @@ body {
   margin: 0;
   padding: 24px;
 
-  display: grid;
-  place-items: center;
+  color: var(--text-color);
+  background: var(--page-background);
+
+  line-height: 1.6;
 }
 
-/* Page container */
+/* ========================================
+   3. PROFILE HEADER
+======================================== */
 
-.page {
-  width: min(100%, 760px);
+.profile-header {
+  width: min(100%, var(--page-width));
+  margin: 0 auto 24px;
+
+  padding: clamp(24px, 5vw, 48px);
+
+  color: #ffffff;
+  background: linear-gradient(135deg, #172033, #2457d6);
+
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }
 
-/* Content card */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.content {
-  padding: clamp(28px, 6vw, 56px);
-
-  border: 1px solid #e0e5ee;
-  border-radius: 16px;
-
-  background: #ffffff;
-
-  box-shadow: 0 16px 40px rgb(23 32 51 / 8%);
-
-  text-align: center;
+  gap: 32px;
 }
 
-/* Small heading */
+.profile-intro {
+  flex: 1;
+  min-width: 0;
+}
 
-.eyebrow {
+.profile-header h1 {
   margin: 0 0 12px;
-
-  color: #2457d6;
-
-  font-size: 0.78rem;
-  font-weight: 700;
-
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-/* Main heading */
-
-h1 {
-  margin: 0;
 
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.15;
 }
 
-/* Description */
+.profile-header p {
+  max-width: 600px;
+  margin: 0;
 
-.message {
-  max-width: 520px;
+  color: #e5edff;
+}
 
-  margin: 18px auto 0;
+.profile-img {
+  width: clamp(110px, 20vw, 170px);
+  aspect-ratio: 1;
 
-  color: #5b667a;
+  flex-shrink: 0;
 
-  line-height: 1.7;
+  object-fit: cover;
+
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+}
+
+/* ========================================
+   4. MAIN CONTENT
+======================================== */
+
+.main-content {
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
+}
+
+/* ========================================
+   5. COMMON CARD DESIGN
+======================================== */
+
+.card {
+  margin-bottom: var(--section-spacing);
+
+  padding: clamp(20px, 4vw, 32px);
+
+  background: var(--surface-color);
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+
+  box-shadow: var(--card-shadow);
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+
+  color: var(--text-color);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+}
+
+.card p {
+  color: var(--muted-color);
+}
+
+/* ========================================
+   6. ABOUT SECTION
+======================================== */
+
+.about-section {
+  line-height: 1.8;
+}
+
+.quote {
+  padding-left: 16px;
+
+  border-left: 4px solid var(--primary-color);
+
+  font-style: italic;
+}
+
+.status {
+  display: inline-block;
+
+  padding: 7px 12px;
+
+  color: #166534;
+  background: #dcfce7;
+
+  border-radius: 50px;
+}
+
+/* ========================================
+   7. SKILLS SECTION
+======================================== */
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  padding: 0;
+  margin: 20px 0;
+
+  list-style: none;
+}
+
+.skill-item {
+  padding: 9px 16px;
+
+  color: var(--primary-color);
+  background: #edf2ff;
+
+  border: 1px solid #d5e0ff;
+  border-radius: var(--small-radius);
+
+  font-weight: 600;
+}
+
+#skill-search {
+  width: 100%;
+  max-width: 450px;
+}
+
+#skills-message,
+#skill-score,
+#experience-score {
+  font-weight: 600;
+}
+
+/* ========================================
+   8. EDUCATION SECTION
+======================================== */
+
+.credentials-list {
+  padding-left: 22px;
+}
+
+.credentials-list li {
+  margin-bottom: 10px;
+  color: var(--muted-color);
+}
+
+/* ========================================
+   9. EXPERIENCE SECTION
+======================================== */
+
+#experience-details {
+  display: grid;
+  gap: 14px;
+}
+
+.experience-item {
+  padding: 16px;
+
+  background: #f4f6fa;
+
+  border-left: 4px solid var(--primary-color);
+  border-radius: var(--small-radius);
+}
+
+/* ========================================
+   10. PROJECTS SECTION
+======================================== */
+
+#projects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+
+  gap: 16px;
+}
+
+.project-item {
+  min-width: 0;
+  padding: 18px;
+
+  background: #f4f6fa;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--small-radius);
+}
+
+.project-item h3 {
+  margin-bottom: 8px;
+}
+
+.project-item p {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   11. ACHIEVEMENTS SECTION
+======================================== */
+
+#achievements-list {
+  padding-left: 22px;
+}
+
+#achievements-list li {
+  margin-bottom: 10px;
+}
+
+/* ========================================
+   12. SOCIAL LINKS
+======================================== */
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.social-btn {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  color: #ffffff;
+  background: var(--primary-color);
+
+  border-radius: var(--small-radius);
+
+  text-decoration: none;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.social-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   13. FORM ELEMENTS
+======================================== */
+
+.contact-section form {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-section form p {
+  margin: 0;
+}
+
+label,
+legend {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  margin-top: 7px;
+  padding: 12px 14px;
+
+  color: var(--text-color);
+  background: #ffffff;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--small-radius);
+
+  font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid rgb(36 87 214 / 15%);
+  border-color: var(--primary-color);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ========================================
+   14. FIELDSETS
+======================================== */
+
+.radio-fieldset,
+.checkbox-fieldset {
+  padding: 16px;
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--small-radius);
+}
+
+.radio-fieldset input,
+.checkbox-fieldset input {
+  width: auto;
+  margin-right: 8px;
+}
+
+.radio-fieldset label,
+.checkbox-fieldset label {
+  font-weight: 400;
+}
+
+/* ========================================
+   15. FORM BUTTONS
+======================================== */
+
+.form-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.btn {
+  padding: 11px 20px;
+
+  border: none;
+  border-radius: var(--small-radius);
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.submit-btn {
+  color: #ffffff;
+  background: var(--primary-color);
+}
+
+.submit-btn:hover {
+  background: var(--primary-hover);
+}
+
+.reset-btn {
+  color: var(--text-color);
+  background: #e8ecf3;
+}
+
+.reset-btn:hover {
+  background: #dce2ed;
+}
+
+/* ========================================
+   16. FORM STATUS MESSAGE
+======================================== */
+
+#form-message {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ========================================
+   17. FOOTER
+======================================== */
+
+footer {
+  width: min(100%, var(--page-width));
+
+  margin: 30px auto 0;
+  padding: 18px;
+
+  color: var(--muted-color);
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* ========================================
+   18. RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 600px) {
+  body {
+    padding: 14px;
+  }
+
+  .header-container {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .profile-intro {
+    width: 100%;
+  }
+
+  .profile-header {
+    padding: 28px 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
